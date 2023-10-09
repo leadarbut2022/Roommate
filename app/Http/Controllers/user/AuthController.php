@@ -23,7 +23,10 @@ class AuthController extends Controller
         if (!$user ) {
             return Common::apiResponse(0,'Requestedentials does\'t match',null, 503);
         }
-
+        $req_is_Set = UserValdateInformation::where('user_id',$id);
+        if ($req_is_Set ) {
+            return Common::apiResponse(1,'you olready have request',null,403);
+        }
          	 
         $ni_photo= '';
         $ni2_photo='';

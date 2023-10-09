@@ -6,6 +6,7 @@ use App\Http\Helpers\Common;
 use App\Http\Resources\PostResource;
 use App\Models\posts;
 use App\Models\PostsImages;
+use App\Models\UserValdateInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +53,11 @@ class PostsController extends Controller
     {
         $data=request()->all();
         $data['user_id']=  Auth::user()->id;
+        $is_valdate=UserValdateInformation::where('user_id',$data['user_id'])->first();
+        if ($is_valdate->active == false) {
+            return Common::apiResponse (0,'plz valdate',null,403);
+
+        }
         unset($data['imgs']);
         // dd($data);
         $create= posts::create($data);
