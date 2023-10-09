@@ -64,7 +64,6 @@ class PostsController extends Controller
         if (!$create) {
             return Common::apiResponse(0, 'Failed to Requesteate user', null, 500); // Changed the status code to 500 for server error
         }
-        
         $images=request()->imgs;
         foreach ($images as $img){
          $path= Common::upload('images/' , $img);

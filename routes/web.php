@@ -42,10 +42,10 @@ $governorates = [
     'Luxor' => 'الأقصر',
     'Suez Canal' => 'قناة السويس',
 ];
-// foreach ($governorates as $s=>$m){
-//     governorates::create([
-//             'name' => $m
-//     ]);
-// }
+foreach ($governorates as $s=>$m){
+    governorates::create([
+            'name' => $m
+    ]);
+}
 
 
