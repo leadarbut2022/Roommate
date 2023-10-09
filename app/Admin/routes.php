@@ -14,4 +14,6 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('users', UsersController::class);
     $router->resource('governorates', GovernoratesController::class);
+    $router->resource('posts', postsValdController::class);
+    $router->resource('user-valdate-informations', UserValdController::class);
 });
