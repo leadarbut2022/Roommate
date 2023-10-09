@@ -23,6 +23,7 @@ Route::post('login',[AuthController::class,'login']);
 
         Route::post('add-post',[PostsController::class,'store']);
         Route::post('get-post',[PostsController::class,'index']);
+        Route::post('valdate-acc',[AuthController::class,'valdate']);
 
 
 

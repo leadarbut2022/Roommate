@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helpers\Common;
+use App\Http\Resources\PostResource;
 use App\Models\posts;
 use App\Models\PostsImages;
 use Illuminate\Http\Request;
@@ -28,9 +29,11 @@ class PostsController extends Controller
         if ($request->has('type')) {
             $data = $data->where('type', $request->type);
         }
-        $result = $data->get();
-        
-        return $result;
+        $result = $data->with('images','user')->get();
+        // return $result;
+        return Common::apiResponse (true,'',PostResource::collection($result),200);
+
+      
         
     }
 
@@ -58,7 +61,7 @@ class PostsController extends Controller
         
         $images=request()->imgs;
         foreach ($images as $img){
-        //  $path= Common::upload('images/' , $img);
+         $path= Common::upload('images/' , $img);
          PostsImages::create([
             'post_id'=>$create->id,
             'img'=>$img

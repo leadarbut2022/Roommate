@@ -11,4 +11,9 @@ class PostsImages extends Model
     use HasFactory;
     protected $table='images_posts';
     protected $guarded = []; 
+
+    public function post()
+    {
+        return $this->belongsTo(posts::class);
+    }
 }
