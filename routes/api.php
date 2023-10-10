@@ -24,7 +24,19 @@ Route::post('login',[AuthController::class,'login']);
         Route::post('add-post',[PostsController::class,'store']);
         Route::post('get-post',[PostsController::class,'index']);
         Route::post('valdate-acc',[AuthController::class,'valdate']);
+        Route::post('user-data',[AuthController::class,'User_data']);
 
+       
+        
+        Route::prefix('users')->group(function () {
+
+            Route::post('/{user}/rate',[AuthController::class, 'rate'])->name('user.rate');
+            Route::post('/{user}/commint',[AuthController::class, 'commint']);
+            Route::post('/{user}/edit-commint',[AuthController::class, 'edit_commint']);
+            Route::post('/{comment}/delete-commint',[AuthController::class, 'delete_commint']);
+            
+
+        });
 
 
 
